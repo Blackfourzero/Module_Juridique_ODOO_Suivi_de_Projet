@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+    <record id="view_projet_tree" model="ir.ui.view">
+            <field name="name">projet.projet.tree</field>
+            <field name="model">projet.projet</field>
+            <field name="arch" type="xml">
+                <tree string="Projet">
+					<field name="id" string="Code"/>
+                    <field name="nom_projet"/>
+					<field name="description"/>
+                    <field name="code_contrat"/>
+                    <field name="date_debut" />
+                    <field name="date_fin" />
+                    <field name="etat_projet" />
+                </tree>
+            </field>
+    </record>
+    <record id="view_projet_form" model="ir.ui.view">
+      <field name="name">projet.projet.form</field>
+      <field name="model">projet.projet</field>
+      <field name="priority" eval="8" />
+      <field name="arch" type="xml">
+        <form string="Projet">
+        <sheet>
+            <notebook colspan="2">
+                <page name="Projet_" string="Projet">
+                    <group col="2" colspan="2" name="Projet___">
+                        <field name="nom_projet" />
+						<field name="description"/>
+                        <field name="code_contrat" />
+                        <field name="date_debut" />
+                        <field name="date_fin" />
+                        <field name="etat_projet" />
+                    </group>
+                </page>
+            </notebook>
+        </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_view_projet">
+            <field name="name">Projet</field>
+            <field name="res_model">projet.projet</field>
+            <field name="priority" eval="8" />
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Creer un nouveau projet
+                </p>
+            </field>
+    </record>
+	
+	<record id="view_reunion_tree" model="ir.ui.view">
+            <field name="name">reunion.reunion.tree</field>
+            <field name="model">reunion.reunion</field>
+            <field name="arch" type="xml">
+                <tree string="Reunion">
+                    <field name="nom_projet" ref="projet.projet.nom_projet" />
+                    <field name="objet_reunion"/>
+					<field name="date_reunion"/>
+                </tree>
+            </field>
+    </record>
+	<record id="view_reunion_form" model="ir.ui.view">
+      <field name="name">reunion.reunion.form</field>
+      <field name="model">reunion.reunion</field>
+      <field name="priority" eval="8" />
+      <field name="arch" type="xml">
+        <form string="Reunion">
+        <sheet>
+            <notebook colspan="2">
+                <page name="Reunion_" string="Reunion">
+                    <group col="2" colspan="2" name="Reunion___">
+                        <field name="nom_projet"  widget="selection" eval="ref('projet.projet.nom_projet')" />
+						<field name="objet_reunion"/>
+						<field name="date_reunion"/>
+                    </group>
+                </page>
+            </notebook>
+        </sheet>
+        </form>
+      </field>
+    </record>
+	<record model="ir.actions.act_window" id="action_view_reunion">
+            <field name="name">Reunion</field>
+            <field name="res_model">reunion.reunion</field>
+            <field name="priority" eval="8" />
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Creer une nouvelle réunion
+                </p>
+            </field>
+    </record>
+	
+	<record id="view_pvinstal_tree" model="ir.ui.view">
+            <field name="name">pv_instal.pv_instal.tree</field>
+            <field name="model">pv_instal.pv_instal</field>
+            <field name="arch" type="xml">
+                <tree string="pv_instal">
+                    <field name="nom_projet" ref="projet.projet.nom_projet" />
+					<field name="code_pv"/>
+                    <field name="type_instal"/>
+					<field name="traite"/>
+					<field name="valide"/>
+					<field name="observation"/>
+                </tree>
+            </field>
+    </record>
+	<record id="view_pvinstal_form" model="ir.ui.view">
+		  <field name="name">pv_instal.pv_instal.form</field>
+          <field name="model">pv_instal.pv_instal</field>
+		  <field name="priority" eval="8" />
+		  <field name="arch" type="xml">
+			<form string="pv_instal">
+			<sheet>
+				<notebook colspan="2">
+					<page name="PV.instal_" string="pv_instal">
+						<group col="2" colspan="2" name="PV.instal___">
+							<field name="nom_projet"  widget="selection" eval="ref('projet.projet.nom_projet')" />
+							<field name="code_pv"/>
+							<field name="type_instal"/>
+							<field name="traite"/>
+							<field name="valide"/>
+							<field name="observation"/>
+						</group>
+					</page>
+				</notebook>
+			</sheet>
+			</form>
+		  </field>
+    </record>
+	<record model="ir.actions.act_window" id="action_view_pvinstal">
+            <field name="name">PV d'installation</field>
+            <field name="res_model">pv_instal.pv_instal</field>
+            <field name="priority" eval="8" />
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Creer un PV d'installation
+                </p>
+            </field>
+    </record>
+	
+	<record id="view_certificat_tree" model="ir.ui.view">
+            <field name="name">certificat.certificat.tree</field>
+            <field name="model">certificat.certificat</field>
+            <field name="arch" type="xml">
+                <tree string="certificat">
+                    <field name="nom_projet" ref="projet.projet.nom_projet" />
+					<field name="code_certificat"/>
+                    <field name="description"/>
+					<field name="traite"/>
+					<field name="valide"/>
+					<field name="observation"/>
+                </tree>
+            </field>
+    </record>
+	<record id="view_certificat_form" model="ir.ui.view">
+		  <field name="name">certificat.certificat.form</field>
+          <field name="model">certificat.certificat</field>
+		  <field name="priority" eval="8" />
+		  <field name="arch" type="xml">
+			<form string="certificat">
+			<sheet>
+				<notebook colspan="2">
+					<page name="certificat_" string="certificat">
+						<group col="2" colspan="2" name="certificat___">
+							<field name="nom_projet"  widget="selection" eval="ref('projet.projet.nom_projet')" />
+							<field name="code_certificat"/>
+							<field name="description"/>
+							<field name="traite"/>
+							<field name="valide"/>
+							<field name="observation"/>
+						</group>
+					</page>
+				</notebook>
+			</sheet>
+			</form>
+		  </field>
+    </record>
+	<record model="ir.actions.act_window" id="action_view_certificat">
+            <field name="name">Certificat de service fait</field>
+            <field name="res_model">certificat.certificat</field>
+            <field name="priority" eval="8" />
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Creer un certificat de service fait
+                </p>
+            </field>
+    </record>
+	
+    <menuitem id="menu_suivi_projets" name="Suivi des projets"/>
+    <menuitem id="projet" name="Projet" parent="menu_suivi_projets"  
+                  action="action_view_projet"/>
+	<menuitem id="reunion" name="Reunion" parent="menu_suivi_projets"  
+                  action="action_view_reunion"/>
+	<menuitem id="pv_instal" name="PV d'installation" parent="menu_suivi_projets"  
+                  action="action_view_pvinstal"/>
+	<menuitem id="certificat" name="Certificat de service fait" parent="menu_suivi_projets"  
+                  action="action_view_certificat"/>
+  </data>
+</odoo>
